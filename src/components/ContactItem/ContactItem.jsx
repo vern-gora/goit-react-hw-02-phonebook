@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import css from './ContactItem.module.css';
 
-const ContactItem = ({ contacts, onDeleteContact }) => {
+const ContactItem = ({ id, name, number, onDeleteContact }) => {
   return (
     <>
-      {contacts.map(({ id, name, number }) => (
+      {
         <li key={id}>
           <p className={css.text}>{name}</p>
           <p className={css.text}>{number}</p>
@@ -13,20 +13,16 @@ const ContactItem = ({ contacts, onDeleteContact }) => {
             Delete
           </button>
         </li>
-      ))}
+      }
     </>
   );
 };
 
 ContactItem.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-  onDeleteContact: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  number: PropTypes.string,
+  onDeleteContact: PropTypes.func,
 };
 
 export default ContactItem;

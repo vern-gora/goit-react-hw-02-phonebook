@@ -1,16 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ContactItem from 'components/ContactItem/ContactItem';
 
-const ContactList = ({ children }) => {
+const ContactList = ({ contacts, onDeleteContact }) => {
   return (
     <>
-      <ul>{children}</ul>
+      <ul>
+        {contacts.map(({ id, name, number }) => (
+          <ContactItem
+            key={id}
+            id={id}
+            name={name}
+            number={number}
+            onDeleteContact={onDeleteContact}
+          />
+        ))}
+      </ul>
     </>
   );
 };
 
 ContactList.propTypes = {
-  children: PropTypes.object.isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
 };
 
 export default ContactList;

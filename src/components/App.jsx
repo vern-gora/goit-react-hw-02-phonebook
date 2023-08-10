@@ -57,19 +57,14 @@ class App extends Component {
     return (
       <div>
         <h1>PhoneBook</h1>
-        <ContactForm
-          // handleNameChange={this.handleNameChange}
-          // handleNumberChange={this.handleNumberChange}
-          handleSubmit={this.handleSubmit}
-          contacts={contacts}
-        />
+        <ContactForm handleSubmit={this.handleSubmit} />
         <h2>Contacts</h2>
         <Filter filter={filter} handleFilterChange={this.handleFilterChange} />
-        <ContactList>
-          <ContactItem
-            contacts={filteredContacts}
-            onDeleteContact={this.delContact}
-          />
+        <ContactList
+          contacts={filteredContacts}
+          onDeleteContact={this.delContact}
+        >
+          <ContactItem />
         </ContactList>
       </div>
     );
